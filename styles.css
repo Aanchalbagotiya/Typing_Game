@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono&display=swap');
+
+:root {
+    --bgColor: #0a1b29; /* Deep Blue */
+    --textPrimary: #f4f4f4; /* Off-white */
+    --textSecondary: #a8a8a8; /* Soft Grey */
+    --primaryColor: #61dafb; /* Vibrant Blue */
+    --accentColor: #fffbfa; /* Coral */
+    --hoverColor: rgba(29, 24, 24, 0.1); /* Hover effect background */
+    --boxShadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bgColor);
+    color: var(--textPrimary);
+    font-size: 1.4rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+main {
+    width: 600px;
+    background-color: #1c2833; /* Darker background to differentiate main container */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--boxShadow);
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    color: var(--primaryColor);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+h1 svg {
+    width: 40px;
+    fill: var(--primaryColor);
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#info {
+    color: var(--primaryColor);
+    font-size: 1.2rem;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--primaryColor);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--hoverColor);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+div#game {
+    line-height: 37px;
+    height: 170px;
+    overflow: hidden;
+    background-color: #28313b; /* Soft dark grey */
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: var(--boxShadow);
+}
+
+#words {
+    filter: blur(5px);
+    color: var(--textSecondary);
+    transition: filter 0.3s ease, color 0.3s ease;
+}
+
+#game:focus #words {
+    filter: blur(0);
+    color: var(--textPrimary);
+}
+
+#focus-error {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    padding-top: 35px;
+    color: var(--accentColor);
+}
+
+#game:focus #focus-error {
+    display: none;
+}
+
+div.word {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 4px;
+}
+
+.letter.correct {
+    color: var(--primaryColor);
+}
+
+.letter.incorrect {
+    color: var(--accentColor);
+}
+
+#cursor {
+    display: none;
+    width: 2px;
+    height: 1.6rem;
+    background-color: var(--primaryColor);
+    position: absolute;
+    top: 198px;
+    left: 18px;
+    animation: blink 0.5s infinite;
+}
+
+#game:focus #cursor {
+    display: block;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#game.over #words {
+    opacity: 0.5;
+    filter: blur(0);
+}
+
+#game.over #focus-error {
+    display: none;
+}
+
+#difficulty-slider {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#toggleDifficultyBtn {
+    background-color: var(--accentColor);
+    color: var(--bgColor);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#difficulty-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bgColor);
+    border-radius: 6px;
+    box-shadow: var(--boxShadow);
+    width: 120px;
+    text-align: left;
+    z-index: 1;
+}
+
+#difficulty-options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bgColor);
+    border: none;
+    color: var(--primaryColor);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+#difficulty-options button:hover {
+    background-color: var(--hoverColor);
+}
+
+#toggleDifficultyBtn,
+#difficulty-options button {
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+#toggleDifficultyBtn:active,
+#difficulty-options button:active {
+    transform: scale(0.95);
+}
+
+/* accuracy */
+.accuracy {
+    margin-left: 10px;
+    color: var(--primaryColor);
+    font-weight: bold;
+}
